@@ -1,0 +1,14 @@
+[
+    {
+        "sentence":"Hello User!",
+        "image":"public/images/smiley.jpg"
+    },
+    {
+        "sentence":"This content is displayed with React and JSON",
+        "image":"public/images/computer.jpg"
+    },
+    {
+        "sentence":"Thanks for visiting. Goodbye!",
+        "image":"public/images/goodbye.jpg"
+    }
+]

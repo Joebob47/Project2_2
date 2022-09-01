@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title> Response File </title>
+    <!-- load Jquery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <!-- load React - note when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom/umd/react-dom.development.js" crossorigin></script>
+  <!-- load babel transpiler to convert React's JSX markup to pure JavaScript
+       Note: we only need babel loaded in the browser if we are not using a build system 
+       where babel would save pure JS files to be loaded by the browser instead -->
+	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script></script>
+
+
+<link rel="stylesheet" href="style.css">
+  </head>
+
+  <body style="background-color:blue">
+    <h1 style="text-align:center"> An HTTP Response Page </h1>
+    <p style="background-color:white; border:2px solid black; padding:4px; text-align:center;">I've been reading a lot on how to load images, but under the circumstances, it is too hard for me to figure out when loading it from JSON and using Node</p>
+
+    <div id="rootReact">
+    </div>
+    <!-- this type value of text/babel tells the browser to use babel to parse the JSX into JS-->
+    <script type="text/babel">
+      "use strict";
+      function RenderIt(props)
+      {
+        console.log(props);
+        return <div> 
+      <ul style ={{"text-align":"center"}}>
+      {
+        props.list.map(
+          (item,index)=>(
+          <li style={{"list-style-type":"none"}} key={index}>
+          <h4 style={{"color":"white"}}> {item.sentence} </h4>
+            <img src={item.image} alt="whatever"/>
+          </li>
+          )
+        )
+      }
+    </ul>
+    
+    </div>
+      }
+
+      $.getJSON(
+      "whatever", 
+      function(jsonData)
+      {
+        const root= ReactDOM.createRoot(document.getElementById('rootReact'));
+      root.render(
+      <RenderIt list={jsonData}/>
+      );
+      
+      }
+      );
+      
+    </script>
+    
+  </body>
+</html>
